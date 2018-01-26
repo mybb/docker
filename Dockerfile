@@ -8,12 +8,16 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		libjpeg-dev \
+		libmemcached-dev \
 		libpng-dev \
 		libpq-dev \
 	; \
 	\
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
 	docker-php-ext-install gd mysqli opcache pgsql; \
+	\
+	pecl install memcached; \
+	docker-php-ext-enable memcached; \
 	\
 	apt-mark auto '.*' > /dev/null; \
 	apt-mark manual $savedAptMark; \

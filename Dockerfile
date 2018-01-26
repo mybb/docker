@@ -14,7 +14,7 @@ RUN set -ex; \
 	; \
 	\
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
-	docker-php-ext-install gd mysqli opcache pgsql; \
+	docker-php-ext-install -j$(nproc) gd mysqli opcache pgsql; \
 	\
 	pecl install memcached; \
 	docker-php-ext-enable memcached; \

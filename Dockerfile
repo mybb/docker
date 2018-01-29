@@ -48,3 +48,18 @@ RUN { \
                 echo 'max_execution_time=20'; \
                 echo 'memory_limit=256M'; \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
+
+ENV MYBB_VERSION 1814
+ENV MYBB_SHA1 d3cd88bfbdbeb8ac44bba44020a3d84efd6a3163
+
+RUN set -ex; \
+	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/mybb_${MYBB_VERSION}.tar.gz"; \
+	echo "$MYBB_SHA1 *mybb.tar.gz" | sha1sum -c -; \
+	tar -xzf mybb.tar.gz -C /usr/src/; \
+	rm mybb.tar.gz; \
+	chown -R www-data:www-data /usr/src/mybb-mybb_${MYBB_VERSION}
+
+COPY docker-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["php-fpm"]

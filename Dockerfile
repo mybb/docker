@@ -41,3 +41,10 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
+RUN { \
+                echo 'file_uploads=On'; \
+                echo 'upload_max_filesize=10M'; \
+                echo 'post_max_size=10M'; \
+                echo 'max_execution_time=20'; \
+                echo 'memory_limit=256M'; \
+        } > /usr/local/etc/php/conf.d/mybb-recommended.ini

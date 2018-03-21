@@ -50,8 +50,8 @@ RUN { \
                 echo 'memory_limit=256M'; \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
 
-ENV MYBB_VERSION 1814
-ENV MYBB_SHA1 d3cd88bfbdbeb8ac44bba44020a3d84efd6a3163
+ENV MYBB_VERSION 1815
+ENV MYBB_SHA1 8b69aa5f0d9e5fd1fb1e9a5459532f98fe17e0f7
 
 RUN set -ex; \
 	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/mybb_${MYBB_VERSION}.tar.gz"; \

@@ -1,5 +1,6 @@
 FROM php:7.2-fpm
 
+LABEL vendor="MyBB Team"
 LABEL maintainer="Kane Valentine <kane@cute.im>"
 
 RUN set -ex; \

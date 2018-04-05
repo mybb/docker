@@ -1,6 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `php7.2` (*Dockerfile*)](https://github.com/mybb/docker/Dockerfile)
+-	[`latest`, `php7.2` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
 
 # Quick reference
 

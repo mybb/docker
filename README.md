@@ -34,26 +34,25 @@ This image only provides a MyBB service container running PHP7.X-FPM. There are 
 Example `stack.yml` for `mybb`:
 
 ```yaml
-version: '3.6'
 services:
-  nginx:
-    image: nginx:mainline
-    ports:
-      - '8080:80'
-    volumes:
-      - ${PWD}/mybb:/var/www/html:ro
-
   mybb:
     image: mybb/mybb:latest
     volumes:
-      - ${PWD}/mybb:/var/www/html
-
+    - ${PWD}/mybb:/var/www/html:rw
+  nginx:
+    image: nginx:mainline
+    ports:
+    - published: 8080
+      target: 80
+    volumes:
+    - ${PWD}/mybb:/var/www/html:ro
   postgresql:
-    image: postgres:10.3
     environment:
       POSTGRES_DB: mybb
-      POSTGRES_USER: mybb
       POSTGRES_PASSWORD: changeme
+      POSTGRES_USER: mybb
+    image: postgres:10.3
     volumes:
-      - ${PWD}/postgres/data:/var/lib/postgresql/data
+    - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
+version: '3.6'
 ```

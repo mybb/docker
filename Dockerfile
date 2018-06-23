@@ -1,14 +1,23 @@
 FROM php:7.2-fpm
 
 LABEL vendor="MyBB Team"
-LABEL version="1.8.15"
+LABEL version="1.9.0"
 LABEL maintainer="Kane Valentine <kane@cute.im>"
+
+# install some tools for debugging within the container if needed
+RUN set -ex; \
+        \
+        apt-get update; \
+        apt-get install -y --no-install-recommends \
+		git \
+		vim \
+		curl \
+		patch
 
 RUN set -ex; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	\
-	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		libjpeg-dev \
 		libmemcached-dev \
@@ -53,15 +62,7 @@ RUN { \
                 echo 'memory_limit=256M'; \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
 
-ENV MYBB_VERSION 1815
-ENV MYBB_SHA1 8b69aa5f0d9e5fd1fb1e9a5459532f98fe17e0f7
-
-RUN set -ex; \
-	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/mybb_${MYBB_VERSION}.tar.gz"; \
-	echo "$MYBB_SHA1 *mybb.tar.gz" | sha1sum -c -; \
-	tar -xzf mybb.tar.gz -C /usr/src/; \
-	rm mybb.tar.gz; \
-	chown -R www-data:www-data /usr/src/mybb-mybb_${MYBB_VERSION}
+ENV MYBB_VERSION 190
 
 COPY docker-entrypoint.sh /usr/local/bin/
 

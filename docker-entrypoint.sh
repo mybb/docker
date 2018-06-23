@@ -14,6 +14,8 @@ if ! [ -e index.php -a -e inc/class_core.php ]; then
 	chmod 777 cache/ cache/themes/ uploads/ uploads/avatars/
 	chmod 666 inc/languages/english/*.php inc/languages/english/admin/*.php
 	chmod 777 cache/ cache/themes/ uploads/ uploads/avatars/ admin/backups/
+	curl -sS https://getcomposer.org/installer | php \
+	&& php composer.phar install --no-suggest --optimize-autoloader
 fi
 
 exec "$@"

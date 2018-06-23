@@ -12,7 +12,8 @@ RUN set -ex; \
 		git \
 		vim \
 		curl \
-		patch
+		patch \
+		unzip
 
 RUN set -ex; \
 	\
@@ -26,7 +27,7 @@ RUN set -ex; \
 	; \
 	\
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
-	docker-php-ext-install -j$(nproc) gd mysqli opcache pgsql; \
+	docker-php-ext-install -j$(nproc) gd mysqli opcache pgsql zip; \
 	\
 	pecl channel-update pecl.php.net; \
 	pecl install memcached xdebug; \

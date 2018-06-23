@@ -9,6 +9,11 @@ if ! [ -e index.php -a -e inc/class_core.php ]; then
 	fi
 	git clone -b develop/1.9 https://github.com/mybb/mybb $PWD
 	echo >&2 "Complete! MyBB ${MYBB_VERSION} has been successfully cloned to $PWD"
+	touch inc/config.php
+	chmod 666 inc/config.php inc/settings.php
+	chmod 777 cache/ cache/themes/ uploads/ uploads/avatars/
+	chmod 666 inc/languages/english/*.php inc/languages/english/admin/*.php
+	chmod 777 cache/ cache/themes/ uploads/ uploads/avatars/ admin/backups/
 fi
 
 exec "$@"

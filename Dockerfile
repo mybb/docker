@@ -1,7 +1,7 @@
 FROM php:7.2-fpm
 
 LABEL vendor="MyBB Team"
-LABEL version="1.8.15"
+LABEL version="1.8.16"
 LABEL maintainer="Kane Valentine <kane@cute.im>"
 
 RUN set -ex; \
@@ -53,8 +53,8 @@ RUN { \
                 echo 'memory_limit=256M'; \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
 
-ENV MYBB_VERSION 1815
-ENV MYBB_SHA1 8b69aa5f0d9e5fd1fb1e9a5459532f98fe17e0f7
+ENV MYBB_VERSION 1816
+ENV MYBB_SHA1 e06e034054f36261c98a8d051ef38e779cce35f1
 
 RUN set -ex; \
 	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/mybb_${MYBB_VERSION}.tar.gz"; \

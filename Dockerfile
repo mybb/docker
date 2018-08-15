@@ -10,13 +10,14 @@ RUN set -ex; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
+		libfreetype6-dev \
 		libjpeg-dev \
 		libmemcached-dev \
 		libpng-dev \
 		libpq-dev \
 	; \
 	\
-	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
+	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr; \
 	docker-php-ext-install -j$(nproc) gd mysqli opcache pgsql; \
 	\
 	pecl channel-update pecl.php.net; \

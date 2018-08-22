@@ -1,6 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `1.8`, `1.8.17` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
+-	[`latest`, `1.8`, `1.8.18` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
 
 # Quick reference
 

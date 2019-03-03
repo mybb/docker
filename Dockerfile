@@ -1,6 +1,5 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
-LABEL vendor="MyBB Team"
 LABEL version="1.8.19"
 LABEL maintainer="Kane Valentine <kane@cute.im>"
 

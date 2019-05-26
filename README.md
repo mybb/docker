@@ -51,7 +51,7 @@ services:
       POSTGRES_DB: mybb
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: mybb
-    image: postgres:10.4
+    image: postgres:11.3
     volumes:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 version: '3.6'

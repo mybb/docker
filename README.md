@@ -56,3 +56,22 @@ services:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 version: '3.6'
 ```
+
+# How to build this image
+
+You must provide four build-time arguments when building this Docker image, `BUILD_AUTHORS`, `BUILD_DATE`, `BUILD_SHA1SUM` and `BUILD_VERSION`.
+```
+docker build \                  
+  --build-arg BUILD_AUTHORS="Kane 'kawaii' Valentine <kawaii@mybb.com>" \
+  --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+  --build-arg BUILD_SHA1SUM=b415ef89f932690cbfad9fbdb51932071d356555 \
+  --build-arg BUILD_VERSION=1821pl1 \
+  --tag mybb/mybb:1.8 \
+  --tag mybb/mybb:1.8.21 \
+  --tag mybb/mybb:latest \
+  $PWD
+```
+The resulting image can then be pushed to the [`mybb/mybb`](https://cloud.docker.com/u/mybb/repository/docker/mybb/mybb) Docker Hub repository:
+```
+docker push mybb/mybb:1.8.21
+```

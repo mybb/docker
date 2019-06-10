@@ -1,7 +1,13 @@
 FROM php:7.3-fpm
 
-LABEL version="1.8.21"
-LABEL maintainer="Kane Valentine <kane@cute.im>"
+ARG BUILD_AUTHORS
+ARG BUILD_DATE
+ARG BUILD_SHA1SUM
+ARG BUILD_VERSION
+
+LABEL org.opencontainers.image.authors=$BUILD_AUTHORS \
+      org.opencontainers.image.created=$BUILD_DATE \
+      org.opencontainers.image.version=$BUILD_VERSION
 
 RUN set -ex; \
 	\
@@ -53,8 +59,8 @@ RUN { \
                 echo 'memory_limit=256M'; \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
 
-ENV MYBB_VERSION 1821pl1
-ENV MYBB_SHA1 b415ef89f932690cbfad9fbdb51932071d356555
+ENV MYBB_VERSION $BUILD_VERSION
+ENV MYBB_SHA1 $BUILD_SHA1SUM
 
 RUN set -ex; \
 	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/mybb_${MYBB_VERSION}.tar.gz"; \

@@ -1,6 +1,6 @@
 FROM php:7.3-fpm
 
-LABEL version="1.8.20"
+LABEL version="1.8.21"
 LABEL maintainer="Kane Valentine <kane@cute.im>"
 
 RUN set -ex; \
@@ -53,8 +53,8 @@ RUN { \
                 echo 'memory_limit=256M'; \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
 
-ENV MYBB_VERSION 1820
-ENV MYBB_SHA1 b69991b1fb634565de0de1cdb5240eacc8648c10
+ENV MYBB_VERSION 1821
+ENV MYBB_SHA1 781af09f9f1d7d5cfdba84ce271a7dc8f0954cd0
 
 RUN set -ex; \
 	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/mybb_${MYBB_VERSION}.tar.gz"; \

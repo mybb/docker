@@ -52,7 +52,7 @@ services:
       POSTGRES_DB: mybb
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: mybb
-    image: postgres:11.3
+    image: postgres:12.1
     volumes:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 version: '3.6'

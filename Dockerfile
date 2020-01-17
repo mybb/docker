@@ -26,8 +26,8 @@ RUN set -ex; \
 	docker-php-ext-install -j$(nproc) gd mysqli opcache pgsql; \
 	\
 	pecl channel-update pecl.php.net; \
-	pecl install memcached; \
-	docker-php-ext-enable memcached; \
+	pecl install memcached redis; \
+	docker-php-ext-enable memcached redis; \
 	\
 	apt-mark auto '.*' > /dev/null; \
 	apt-mark manual $savedAptMark; \

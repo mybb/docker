@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:7.4-fpm-alpine
 
 ARG BUILD_AUTHORS
 ARG BUILD_DATE
@@ -11,36 +11,34 @@ LABEL org.opencontainers.image.authors=$BUILD_AUTHORS \
 
 RUN set -ex; \
 	\
-	savedAptMark="$(apt-mark showmanual)"; \
-	\
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		libfreetype6-dev \
-		libjpeg-dev \
+	apk add --no-cache --virtual .build-deps \
+		$PHPIZE_DEPS \
 		libmemcached-dev \
+		freetype-dev \
+		libjpeg-turbo-dev \
 		libpng-dev \
-		libpq-dev \
+		postgresql-dev \
 	; \
 	\
-	docker-php-ext-configure gd --with-jpeg=/usr --with-freetype=/usr; \
-	docker-php-ext-install -j$(nproc) gd mysqli opcache pgsql; \
-	\
+	docker-php-ext-configure gd --with-freetype --with-jpeg; \
+	docker-php-ext-install -j "$(nproc)" \
+		gd \
+		mysqli \
+		opcache \
+		pgsql \
+	; \
 	pecl channel-update pecl.php.net; \
 	pecl install memcached redis; \
 	docker-php-ext-enable memcached redis; \
 	\
-	apt-mark auto '.*' > /dev/null; \
-	apt-mark manual $savedAptMark; \
-	ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
-		| awk '/=>/ { print $3 }' \
-		| sort -u \
-		| xargs -r dpkg-query -S \
-		| cut -d: -f1 \
-		| sort -u \
-		| xargs -rt apt-mark manual; \
-	\
-	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-	rm -rf /var/lib/apt/lists/*
+	runDeps="$( \
+		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
+			| tr ',' '\n' \
+			| sort -u \
+			| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
+	)"; \
+	apk add --virtual .mybb-phpexts-rundeps $runDeps; \
+	apk del .build-deps
 
 RUN { \
 		echo 'opcache.memory_consumption=128'; \

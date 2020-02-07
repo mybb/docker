@@ -28,7 +28,7 @@ MyBB is the free and open source, intuitive, extensible, and incredibly powerful
 $ docker container run mybb/mybb:latest
 ```
 
-This image only provides a MyBB service container running PHP-FPM. There are no database, cache or nginx container(s) provided, you'll need to use Docker Compose or Stack to wrange those additional services to your MyBB instance.
+This image only provides a MyBB service container running PHP-FPM. There are no database, cache or nginx container(s) provided, you'll need to use Docker Compose or Swarm to wrange those additional services to your MyBB instance.
 
 ## ... via [`docker stack deploy`](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [`docker-compose`](https://github.com/docker/compose)
 

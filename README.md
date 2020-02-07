@@ -28,7 +28,7 @@ MyBB is the free and open source, intuitive, extensible, and incredibly powerful
 $ docker container run mybb/mybb:latest
 ```
 
-This image only provides a MyBB service container running PHP7.X-FPM. There are no database, cache or nginx container(s) provided, you'll need to use Docker Compose or Stack to wrange those additional services to your MyBB instance. Please see the provided mysqli/pgsql Compose example files in the official repository, [here](https://github.com/mybb/docker-compose). A very basic example has also been provided below.
+This image only provides a MyBB service container running PHP-FPM. There are no database, cache or nginx container(s) provided, you'll need to use Docker Compose or Stack to wrange those additional services to your MyBB instance.
 
 ## ... via [`docker stack deploy`](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [`docker-compose`](https://github.com/docker/compose)
 
@@ -56,7 +56,7 @@ services:
     image: postgres:12.1
     volumes:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
-version: '3.6'
+version: '3.7'
 ```
 
 Note, you'll also need a virtual host configuration file for the provided `nginx` container. You can find a very basic example [here](https://gist.github.com/kawaii/ed2fbbf11309b8f635a623fa87abce8d). Create this file as `nginx/default.conf`, respective to the location of your `docker-compose.yml` file.

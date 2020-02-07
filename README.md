@@ -46,6 +46,7 @@ services:
     - published: 8080
       target: 80
     volumes:
+    - ${PWD}/nginx:/etc/nginx/conf.d:ro
     - ${PWD}/mybb:/var/www/html:ro
   postgresql:
     environment:
@@ -57,6 +58,8 @@ services:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 version: '3.6'
 ```
+
+Note, you'll also need a virtual host configuration file for the provided `nginx` container. You can find a very basic example [here](https://gist.github.com/kawaii/ed2fbbf11309b8f635a623fa87abce8d). Create this file as `nginx/default.conf`, respective to the location of your `docker-compose.yml` file.
 
 # How to build this image
 

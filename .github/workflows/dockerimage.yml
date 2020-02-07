@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  schedule:
+  - cron: "20 19 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_VERSION: 1822
+      BUILD_SHA1SUM: c84341b409672d3617300a0348fc81ff21453433
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: |
+          docker build \
+            --build-arg BUILD_AUTHORS="Kane 'kawaii' Valentine <kawaii@mybb.com>" \
+            --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+            --build-arg BUILD_SHA1SUM=$BUILD_SHA1SUM \
+            --build-arg BUILD_VERSION=$BUILD_VERSION \
+            --tag mybb/mybb:$BUILD_VERSION \
+            --tag mybb/mybb:latest \
+          $PWD

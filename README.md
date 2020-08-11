@@ -1,7 +1,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/mybb/mybb.svg) ![Docker Stars](https://img.shields.io/docker/stars/mybb/mybb.svg) ![MicroBadger Size](https://img.shields.io/microbadger/image-size/mybb/mybb.svg)
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `1.8`, `1.8.22` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
+-	[`latest`, `1.8`, `1.8.24` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
 
 # Quick reference
 
@@ -53,7 +53,7 @@ services:
       POSTGRES_DB: mybb
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: mybb
-    image: postgres:12.1
+    image: postgres:12.3
     volumes:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 version: '3.7'

@@ -24,12 +24,6 @@ MyBB is the free and open source, intuitive, extensible, and incredibly powerful
 
 # How to use this image
 
-```console
-$ docker container run mybb/mybb:latest
-```
-
-This image only provides a MyBB service container running PHP-FPM. There are no database, cache or nginx container(s) provided, you'll need to use Docker Compose or Swarm to wrange those additional services to your MyBB instance.
-
 ## ... via [`docker stack deploy`](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [`docker-compose`](https://github.com/docker/compose)
 
 Example `stack.yml` for `mybb`:
@@ -40,32 +34,37 @@ services:
     image: mybb/mybb:latest
     volumes:
     - ${PWD}/mybb:/var/www/html:rw
+
   nginx:
-    image: nginx:mainline
+    image: nginx:mainline-alpine
     ports:
     - published: 8080
       target: 80
     volumes:
     - ${PWD}/nginx:/etc/nginx/conf.d:ro
     - ${PWD}/mybb:/var/www/html:ro
+
   postgresql:
     environment:
       POSTGRES_DB: mybb
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: mybb
-    image: postgres:12.3
+    image: postgres:13.1-alpine
     volumes:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
+
 version: '3.7'
 ```
 
 Note, you'll also need a virtual host configuration file for the provided `nginx` container. You can find a very basic example [here](https://gist.github.com/kawaii/ed2fbbf11309b8f635a623fa87abce8d). Create this file as `nginx/default.conf`, respective to the location of your `docker-compose.yml` file.
 
+You should note that static content such as images and JavaScript or CSS files must be cross-mounted between the `mybb` and `nginx` containers - as PHP-FPM is not capable of serving those natively.
+
 # How to build this image
 
-You must provide four build-time arguments when building this Docker image, `BUILD_AUTHORS`, `BUILD_DATE`, `BUILD_SHA1SUM` and `BUILD_VERSION`.
+You must provide four build-time arguments when building this Docker image; `BUILD_AUTHORS`, `BUILD_DATE`, `BUILD_SHA1SUM` and `BUILD_VERSION`.
 ```
-docker build \                  
+docker build \
   --build-arg BUILD_AUTHORS="Kane 'kawaii' Valentine <kawaii@mybb.com>" \
   --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
   --build-arg BUILD_SHA1SUM=b415ef89f932690cbfad9fbdb51932071d356555 \

@@ -29,8 +29,8 @@ RUN set -ex; \
 		pgsql \
 	; \
 	pecl channel-update pecl.php.net; \
-	pecl install memcached redis; \
-	docker-php-ext-enable memcached redis; \
+	pecl install igbinary-3.1.6 memcached-3.1.5 redis-5.3.2; \
+	docker-php-ext-enable igbinary memcached redis; \
 	\
 	runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \

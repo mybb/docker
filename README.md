@@ -1,17 +1,17 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/mybb/mybb.svg) ![Docker Stars](https://img.shields.io/docker/stars/mybb/mybb.svg) ![MicroBadger Size](https://img.shields.io/microbadger/image-size/mybb/mybb.svg)
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `1.8`, `1.8.24` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
+-	[`latest`, `1.8`, `1.8.25` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
 
 # Quick reference
 
--	**Where to get help**:  
+-	**Where to get help**:
 	[the MyBB Community Forums](https://community.mybb.com/)
 
--	**Where to file issues**:  
+-	**Where to file issues**:
 	[https://github.com/mybb/docker/issues](https://github.com/mybb/docker/issues)
 
--	**Maintained by**:  
+-	**Maintained by**:
 	[the MyBB Team](https://mybb.com/about/team/)
 
 # What is MyBB?
@@ -49,7 +49,7 @@ services:
       POSTGRES_DB: mybb
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: mybb
-    image: postgres:13.1-alpine
+    image: postgres:13.2-alpine
     volumes:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 

@@ -1,7 +1,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/mybb/mybb.svg) ![Docker Stars](https://img.shields.io/docker/stars/mybb/mybb.svg) ![MicroBadger Size](https://img.shields.io/microbadger/image-size/mybb/mybb.svg)
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `1.8`, `1.8.25` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
+-	[`latest`, `1.8`, `1.8.26` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
 
 # Quick reference
 
@@ -67,14 +67,14 @@ You must provide four build-time arguments when building this Docker image; `BUI
 docker build \
   --build-arg BUILD_AUTHORS="Kane 'kawaii' Valentine <kawaii@mybb.com>" \
   --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
-  --build-arg BUILD_SHA1SUM=b415ef89f932690cbfad9fbdb51932071d356555 \
-  --build-arg BUILD_VERSION=1821pl1 \
+  --build-arg BUILD_SHA1SUM=5cd4771ef396964869d3b42ec520d2bea80084ce \
+  --build-arg BUILD_VERSION=1826 \
   --tag mybb/mybb:1.8 \
-  --tag mybb/mybb:1.8.21 \
+  --tag mybb/mybb:1.8.26 \
   --tag mybb/mybb:latest \
   $PWD
 ```
 The resulting image can then be pushed to the [`mybb/mybb`](https://cloud.docker.com/u/mybb/repository/docker/mybb/mybb) Docker Hub repository:
 ```
-docker push mybb/mybb:1.8.21
+docker push mybb/mybb:1.8.26
 ```

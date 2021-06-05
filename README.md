@@ -36,7 +36,7 @@ Example `stack.yml` for `mybb`:
 ```yaml
 services:
   mybb:
-    image: mybb/mybb:latest
+    build: .
     volumes:
     - ${PWD}/mybb:/var/www/html:rw
   nginx:
@@ -56,3 +56,14 @@ services:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 version: '3.6'
 ```
+
+## Connecting to the database
+Once it is running and you are on the MyBB installation page, you can use the following database credentials for connecting.
+
+*Note: this is assuming you are using the above stack.yml / docker-compose file.*
+
+
+- Database host: `postgresql` (this is from the postgresql service setup in the docker-compose file.
+- Database user: `mybb`
+- Database password: `changeme`
+- Database name: `mybb`

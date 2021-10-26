@@ -26,10 +26,12 @@ RUN set -ex; \
 		gd \
 		mysqli \
 		opcache \
+		pdo_mysql \
+ 		pdo_pgsql \
 		pgsql \
 	; \
 	pecl channel-update pecl.php.net; \
-	pecl install igbinary-3.1.6 memcached-3.1.5 redis-5.3.2; \
+	pecl install igbinary-3.2.6 memcached-3.1.5 redis-5.3.4; \
 	docker-php-ext-enable igbinary memcached redis; \
 	\
 	runDeps="$( \

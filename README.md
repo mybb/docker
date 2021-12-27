@@ -60,6 +60,27 @@ Note, you'll also need a virtual host configuration file for the provided `nginx
 
 You should note that static content such as images and JavaScript or CSS files must be cross-mounted between the `mybb` and `nginx` containers - as PHP-FPM is not capable of serving those natively.
 
+# Preserving existing files
+
+If you wish to run this image and preserve any updated `lang` or `config` files, you can add the following flag:
+
+```
+docker run $PWD --skip-old-files
+```
+
+or, within your compose file, specify the following command argument:
+
+```yaml
+services:
+  mybb:
+    image: mybb/mybb:latest
+    command: --skip-old-files
+    volumes:
+    - ${PWD}/mybb:/var/www/html:rw
+
+    ...
+```
+
 # How to build this image
 
 You must provide four build-time arguments when building this Docker image; `BUILD_AUTHORS`, `BUILD_DATE`, `BUILD_SHA1SUM` and `BUILD_VERSION`.

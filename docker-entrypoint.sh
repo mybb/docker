@@ -1,9 +1,24 @@
 #!/usr/bin/env sh
 set -euo pipefail
 
+SKIP_OLD_FILES=false
+
+# Loop through arguments and process them
+for arg in "$@"; do
+    case $arg in
+    --skip-old-files)
+        SKIP_OLD_FILES=true
+        shift # Remove --skip-verification from `$@`
+        ;;
+    *)
+        break
+        ;;
+    esac
+done
+
 if ! [ -e index.php -a -e inc/class_core.php ]; then
 	echo >&2 "MyBB not found in $PWD - copying now..."
-	if [[ $* == *--skip-old-files* ]] then
+	if [[ $SKIP_OLD_FILES == true ]]; then
 		echo >&2 "Preserving existing directory files..."
 		tar cf - --one-file-system -C /usr/src/mybb-mybb_${MYBB_VERSION} . | tar xf - --skip-old-files
 	else

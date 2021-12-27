@@ -65,7 +65,7 @@ You should note that static content such as images and JavaScript or CSS files m
 If you wish to run this image and preserve any updated `lang` or `config` files, you can add the following flag:
 
 ```
-docker run $PWD --skip-old-files
+docker run mybb/mybb --skip-old-files php-fpm
 ```
 
 or, within your compose file, specify the following command argument:
@@ -74,7 +74,7 @@ or, within your compose file, specify the following command argument:
 services:
   mybb:
     image: mybb/mybb:latest
-    command: --skip-old-files
+    command: --skip-old-files php-fpm
     volumes:
     - ${PWD}/mybb:/var/www/html:rw
 

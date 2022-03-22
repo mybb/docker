@@ -1,4 +1,4 @@
-![Docker Pulls](https://img.shields.io/docker/pulls/mybb/mybb.svg) ![Docker Stars](https://img.shields.io/docker/stars/mybb/mybb.svg) ![MicroBadger Size](https://img.shields.io/microbadger/image-size/mybb/mybb.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/mybb/mybb.svg) ![Docker Stars](https://img.shields.io/docker/stars/mybb/mybb.svg)
 # Supported tags and respective `Dockerfile` links
 
 -	[`latest`, `1.8`, `1.8.26` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)

@@ -1,7 +1,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/mybb/mybb.svg) ![Docker Stars](https://img.shields.io/docker/stars/mybb/mybb.svg)
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `1.8`, `1.8.26` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
+-	[`latest`, `1.8`, `1.8.30` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
 
 # Quick reference
 
@@ -49,7 +49,7 @@ services:
       POSTGRES_DB: mybb
       POSTGRES_PASSWORD: changeme
       POSTGRES_USER: mybb
-    image: postgres:13.2-alpine
+    image: postgres:14-alpine
     volumes:
     - ${PWD}/postgres/data:/var/lib/postgresql/data:rw
 
@@ -62,19 +62,19 @@ You should note that static content such as images and JavaScript or CSS files m
 
 # How to build this image
 
-You must provide four build-time arguments when building this Docker image; `BUILD_AUTHORS`, `BUILD_DATE`, `BUILD_SHA1SUM` and `BUILD_VERSION`.
+You must provide four build-time arguments when building this Docker image; `BUILD_AUTHORS`, `BUILD_DATE`, `BUILD_SHA512SUM` and `BUILD_VERSION`.
 ```
 docker build \
   --build-arg BUILD_AUTHORS="Kane 'kawaii' Valentine <kawaii@mybb.com>" \
   --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
-  --build-arg BUILD_SHA1SUM=5cd4771ef396964869d3b42ec520d2bea80084ce \
-  --build-arg BUILD_VERSION=1826 \
+  --build-arg BUILD_SHA512SUM=be3bdec9617050abbabbfcfa40e9cd145db3a57ae70e740bc62d807b04c08a5fa42ac690a5502c344f0f7452276aa0f3802501e6d62fa76edc64ac36da25b3cd \
+  --build-arg BUILD_VERSION=1830 \
   --tag mybb/mybb:1.8 \
-  --tag mybb/mybb:1.8.26 \
+  --tag mybb/mybb:1.8.30 \
   --tag mybb/mybb:latest \
   $PWD
 ```
 The resulting image can then be pushed to the [`mybb/mybb`](https://cloud.docker.com/u/mybb/repository/docker/mybb/mybb) Docker Hub repository:
 ```
-docker push mybb/mybb:1.8.26
+docker push mybb/mybb:1.8.30
 ```

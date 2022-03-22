@@ -2,7 +2,7 @@ FROM php:7.4-fpm-alpine
 
 ARG BUILD_AUTHORS
 ARG BUILD_DATE
-ARG BUILD_SHA1SUM
+ARG BUILD_SHA512SUM
 ARG BUILD_VERSION
 
 LABEL org.opencontainers.image.authors=$BUILD_AUTHORS \
@@ -73,11 +73,11 @@ RUN { \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
 
 ENV MYBB_VERSION $BUILD_VERSION
-ENV MYBB_SHA1 $BUILD_SHA1SUM
+ENV MYBB_SHA512 $BUILD_SHA512SUM
 
 RUN set -ex; \
-	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/mybb_${MYBB_VERSION}.tar.gz"; \
-	echo "$MYBB_SHA1 *mybb.tar.gz" | sha1sum -c -; \
+	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/refs/tags/mybb_${MYBB_VERSION}.tar.gz"; \
+	echo "$MYBB_SHA512 *mybb.tar.gz" | sha512sum -c -; \
 	tar -xzf mybb.tar.gz -C /usr/src/; \
 	rm mybb.tar.gz; \
 	chown -R www-data:www-data /usr/src/mybb-mybb_${MYBB_VERSION}

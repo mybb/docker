@@ -56,7 +56,7 @@ services:
 version: '3.8'
 ```
 
-Note, you'll also need a virtual host configuration file for the provided `nginx` container. You can find a very basic example [here](https://gist.github.com/kawaii/ed2fbbf11309b8f635a623fa87abce8d). Create this file as `nginx/default.conf`, respective to the location of your `docker-compose.yml` file.
+Note, you'll also need a virtual host configuration file for the provided `nginx` container. You can find a very basic example [here](https://gist.github.com/kawaii/ed2fbbf11309b8f635a623fa87abce8d). Create [this file](https://gist.github.com/kawaii/ed2fbbf11309b8f635a623fa87abce8d) as **`./nginx/default.conf`**, respective to the location of your `docker-compose.yml` file.
 
 You should note that static content such as images and JavaScript or CSS files must be cross-mounted between the `mybb` and `nginx` containers - as PHP-FPM is not capable of serving those natively.
 

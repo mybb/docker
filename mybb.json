@@ -1,0 +1,47 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes"
+        }
+
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": [
+                    "*.php",
+                    "*.php/*"
+                ]
+            },
+
+            "action": {
+                "pass": "applications/mybb/direct"
+            }
+        },
+        {
+            "action": {
+                "share": "/var/www/html/$uri",
+                "fallback": {
+                    "pass": "applications/mybb/index"
+                }
+            }
+        }
+    ],
+
+    "applications": {
+        "mybb": {
+            "type": "php",
+            "targets": {
+                "direct": {
+                    "root": "/var/www/html/"
+                },
+
+                "index": {
+                    "root": "/var/www/html/",
+                    "script": "index.php"
+                }
+            }
+        }
+    }
+}

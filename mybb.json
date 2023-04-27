@@ -10,6 +10,18 @@
         {
             "match": {
                 "uri": [
+                    "/inc/*"
+                ]
+            },
+
+            "action": {
+                "return": 403
+            }
+        },
+        {
+            "match": {
+                "uri": [
+                    "/",
                     "*.php",
                     "*.php/*"
                 ]
@@ -32,14 +44,14 @@
     "applications": {
         "mybb": {
             "type": "php",
+            "user": "www-data",
+            "group": "www-data",
             "targets": {
                 "direct": {
                     "root": "/var/www/html/"
                 },
-
                 "index": {
-                    "root": "/var/www/html/",
-                    "script": "index.php"
+                    "root": "/var/www/html/"
                 }
             }
         }

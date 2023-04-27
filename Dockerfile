@@ -74,7 +74,8 @@ RUN set -ex; \
 	chown -R www-data:www-data /usr/src/mybb-mybb_${MYBB_VERSION}
 
 WORKDIR /var/www/html/
-COPY docker-entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+COPY mybb.json /docker-entrypoint.d/
+COPY docker-entrypoint.sh /docker-entrypoint.d/
+
 CMD ["unitd-debug","--no-daemon","--control","unix:/var/run/control.unit.sock"]

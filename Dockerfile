@@ -76,7 +76,7 @@ ENV MYBB_VERSION=$BUILD_VERSION
 ENV MYBB_SHA512=$BUILD_SHA512SUM
 
 RUN set -ex; \
-	curl -o mybb.zip -fSL "https://github.com/mybb/mybb/releases/download/mybb_1839/mybb_${MYBB_VERSION}.zip"; \
+	curl -o mybb.zip -fSL "https://github.com/mybb/mybb/releases/download/mybb_${MYBB_VERSION}/mybb_${MYBB_VERSION}.zip"; \
 	echo "$MYBB_SHA512 *mybb.zip" | sha512sum -c -; \
 	unzip mybb.zip; \
 	mv Upload /usr/src/mybb-mybb_${MYBB_VERSION}; \

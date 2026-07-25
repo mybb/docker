@@ -1,7 +1,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/mybb/mybb.svg) ![Docker Stars](https://img.shields.io/docker/stars/mybb/mybb.svg)
 # Supported tags and respective `Dockerfile` links
 
--	[`latest`, `1.8`, `1.8.30` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
+-	[`latest`, `1.8`, `1.8.40` (*Dockerfile*)](https://github.com/mybb/docker/blob/master/Dockerfile)
 
 # Quick reference
 

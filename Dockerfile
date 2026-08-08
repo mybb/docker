@@ -72,14 +72,15 @@ RUN { \
                 echo 'memory_limit=256M'; \
         } > /usr/local/etc/php/conf.d/mybb-recommended.ini
 
-ENV MYBB_VERSION $BUILD_VERSION
-ENV MYBB_SHA512 $BUILD_SHA512SUM
+ENV MYBB_VERSION=$BUILD_VERSION
+ENV MYBB_SHA512=$BUILD_SHA512SUM
 
 RUN set -ex; \
-	curl -o mybb.tar.gz -fSL "https://github.com/mybb/mybb/archive/refs/tags/mybb_${MYBB_VERSION}.tar.gz"; \
-	echo "$MYBB_SHA512 *mybb.tar.gz" | sha512sum -c -; \
-	tar -xzf mybb.tar.gz -C /usr/src/; \
-	rm mybb.tar.gz; \
+	curl -o mybb.zip -fSL "https://github.com/mybb/mybb/releases/download/mybb_${MYBB_VERSION}/mybb_${MYBB_VERSION}.zip"; \
+	echo "$MYBB_SHA512 *mybb.zip" | sha512sum -c -; \
+	unzip mybb.zip; \
+	mv Upload /usr/src/mybb-mybb_${MYBB_VERSION}; \
+	rm -rf mybb.zip Documentation; \
 	chown -R www-data:www-data /usr/src/mybb-mybb_${MYBB_VERSION}
 
 COPY docker-entrypoint.sh /usr/local/bin/

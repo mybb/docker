@@ -31,7 +31,8 @@ RUN set -ex; \
 		pgsql \
 	; \
 	pecl channel-update pecl.php.net; \
-	pecl install igbinary-3.2.16 memcached-3.4.0 redis-6.3.0; \
+	pecl install igbinary-3.2.16; \
+	pecl install memcached-3.4.0 redis-6.3.0; \
 	docker-php-ext-enable igbinary memcached redis; \
 	\
 	runDeps="$( \
